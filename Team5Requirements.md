@@ -83,12 +83,12 @@ User follows the "login" link and enters their username and password in the prov
 ### **Non-functional Requirements:**
 * The System responds to each user input within 5 seconds.
 
-### **Glossary**
-**User** = a person who wants to log in to his or her account
+### **Glossary:**      
+**User** = a person who wants to log in to his or her account    
 
 
 # Use Case #2 Name: Schedule a commitment
-### **Summary:**
+### **Summary:**     
 A user who has logged in can select dates to schedule a commitment.
 ### **Actor(s):**
 * The user
@@ -112,8 +112,8 @@ User selects the "new" option, and selects the date to schedule.
 2) The system prompts the user to cancel or replace the old commitment with the new one.
 ### **Non-functional Requirements:**
 * The system responds to each user input within 5 seconds.
-**Glossary**
-**User** = a person with an account who wants to add a commitment to their availability   
+### **Glossary:**      
+**User** = a person with an account who wants to add a commitment to their availability       
 **Guest** = a person who wants to schedule an appointment with a user   
 **Commitment** = an event occurring outside of appointment scheduling (during which the user is unavailable for appointments)    
 **Appointment** = meeting between guest and user   
@@ -180,7 +180,7 @@ The user selects the "repeat" option when adding a commitment that will be recur
 2) The system prompts the user to cancel or replace the commitment for that conflicting time.
 ### **Non-functional Requirements:**
 * The system responds to each user input within 5 seconds.
-### **Glossary**
+### **Glossary:**
 **User** = a person with an account who wants to add a commitment to his or her availability   
 **Guest** = a person who wants to schedule an appointment with a user   
 **Commitment** = an event occurring outside of appointment scheduling (during which the user is unavailable for appointments)    
@@ -224,7 +224,7 @@ The user selects “edit commitment”.
 * The system responds to each user input within 5 seconds.
 * The system should relay messages in English. 
 
-Glossary:
+### **Glossary:**    
 **User** = a person with an account who wants to edit a commitment in his or her availability      
 **Commitment** = an event occurring outside of appointment scheduling (during which the user is unavailable for appointments)    
 
