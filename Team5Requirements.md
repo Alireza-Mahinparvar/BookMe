@@ -79,6 +79,9 @@ User follows the "login" link and enters their username and password in the prov
 * User forgot username/password
 1) User should select “Forgot password or username”
 2) The system allows the user to recover their username/password
+* User enters incorrect credentials
+1) System will display a mesage that notifies the user of the issue
+2) User should enter their credentials again 
 
 ### **Non-functional Requirements:**
 * The System responds to each user input within 5 seconds.
@@ -89,13 +92,13 @@ User follows the "login" link and enters their username and password in the prov
 
 # Use Case #2 Name: Schedule a commitment
 ### **Summary:**     
-A user who has logged in can select dates to schedule a commitment.
+A user who has logged in can select dates to schedule commitments.
 ### **Actor(s):**
 * The user
 ### **Preconditions:**
 * The user has logged in.
 ### **Triggers:**
-User selects the "new" option, and selects the date to schedule.
+User selects the "new" option in their availability settings and selects a date.
 ### **Primary Sequence:**
 1) User selects "new" to schedule the commitment.
 2) System checks availability from existing commitments.
@@ -128,7 +131,7 @@ A user who is logged in wants to delete a previously created commitment.
 * The user.
 ### **Preconditions:**
 * The user is logged in. 
-* The user has a created event.
+* The user has previously created a commitment.
 ### **Triggers:**
 The user selects “edit commitment”. 
 ### **Primary Sequence:**
@@ -139,7 +142,7 @@ The user selects “edit commitment”.
 5) User saves schedule. 
 ### **Primary Postconditions:**
 * The user has deleted the desired commitment.
-* No changes occurred to the schedule. 
+* Guests will now be able to book appointments during that timeframe 
 ### **Alternate Sequences:**
 * System is unable to delete the commitment.
 1) System relays an error message. 
@@ -216,9 +219,9 @@ The user selects “edit commitment”.
 * The user has edited the desired commitment.
 * No changes occurred to the commitment. 
 ### **Alternate Sequences:**
-* User enters conflicting dates after selecting “repeat”.
+* User enters conflicting dates or times after selecting “edit”.
 1) The system displays an error message to the user.
-2) The system prompts the user to skip or replace the commitment for that conflicting time.
+2) The system prompts the user to cancel or replace the commitment for that conflicting time.
 ### **Non-functional Requirements:** 
 * The system responds to each user input within 5 seconds.
 * The system should relay messages in English. 
