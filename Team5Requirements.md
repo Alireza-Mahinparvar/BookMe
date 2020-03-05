@@ -29,7 +29,7 @@ The objective of our application is to create a single platform for customers to
 2) System should run on Windows, Mac, and Linux. 
 3) System should relay messages in English. 
 4) System should be accurate 100% of the time. 
-
+<br/><br><br>
 ## Use Cases
 **UML Use Case Diagram:**     
 ![UML_Diagram](UML_Diagram.png)  
@@ -149,8 +149,7 @@ The user selects “edit commitment”.
 ### **Glossary:**
 **User** = a person with an account who wants to delete a commitment from his or her availability   
 **Guest** = a person who wants to schedule an appointment with a user   
-**Commitment** = an event occurring outside of appointment scheduling (during which the user is unavailable for appointments)    
-**Appointment** = meeting between guest and user   
+  
 
       
 # Use Case #4 Name: Schedule recurring commitments.
