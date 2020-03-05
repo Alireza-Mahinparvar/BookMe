@@ -4,7 +4,7 @@
 ## **GitHub Usernames:**   
 **lenexagonsalves**   
 **Alireza-Mahinparvar**  
-**Domgutz3**  
+**domgutz3**  
 **BenG7447**  
 
 
@@ -32,7 +32,7 @@ The objective of our application is to create a single platform for customers to
 
 ## Use Cases
 **UML Use Case Diagram:**     
-![UML_Diagram](C:\Users\dnicg\Desktop\UML_Diagram.png)  
+![UML_Diagram](UML_Diagram.png)  
 
 1) Register for an account (user)
 2) Log into an account (user)
