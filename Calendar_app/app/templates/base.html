@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       {% if title %}
+       <title>BookMe - {{ title }} Page</title>
+       {% else %}
+       <title>BookMe</title>
+       {% endif %}
+    </head>
+    <body>
+       <div>
+        <a href="{{ url_for('home') }}">Home Page</a>
+        {% if current_user.is_active == False %}
+        &emsp; <a href="{{ url_for('login') }}">Sign in</a>
+        {% endif %}
+        {% if current_user.is_active %}
+        &emsp; <a href="{{ url_for('logout') }}">Log out</a>
+        {% endif %}
+	 </div>
+       <hr>
+       {% block content %}{% endblock %}
+
+       {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %} 
+    </body>
+</html>
