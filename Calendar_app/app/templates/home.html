@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    {% if current_user.is_active %}
+    <!-- current_user a property of flask_login-->
+    <h1>Hello, {{ current_user.username }}!</h1>
+    {% else %}
+    <h1>Welcome!</h1>
+    {% endif %}
+
+
+{% endblock %}
