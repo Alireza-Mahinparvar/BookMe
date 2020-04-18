@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Functions &#8212; BookMe  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="How to install BookMe" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-config">
+<span id="functions"></span><h1>Functions<a class="headerlink" href="#module-config" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="config.Config">
+<em class="property">class </em><code class="sig-prename descclassname">config.</code><code class="sig-name descname">Config</code><a class="headerlink" href="#config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that holds all the configuration setting for the project</p>
+<dl>
+<dt>Attributes:</dt><dd><p>SECRET_KEY: key used to prevent cross site attacks</p>
+<p>SQLALCHEMY_DATABASE_URI: location for database</p>
+<p>SQLALCHEMY_TRACK_MODIFICATIONS: Modification tracker</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="config.Config.SECRET_KEY">
+<code class="sig-name descname">SECRET_KEY</code><em class="property"> = 'you-will-never-guess'</em><a class="headerlink" href="#config.Config.SECRET_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.SQLALCHEMY_DATABASE_URI">
+<code class="sig-name descname">SQLALCHEMY_DATABASE_URI</code><em class="property"> = 'sqlite:////Users/beng7447/SourceCode/Calendar_app/app.db'</em><a class="headerlink" href="#config.Config.SQLALCHEMY_DATABASE_URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.SQLALCHEMY_TRACK_MODIFICATIONS">
+<code class="sig-name descname">SQLALCHEMY_TRACK_MODIFICATIONS</code><em class="property"> = False</em><a class="headerlink" href="#config.Config.SQLALCHEMY_TRACK_MODIFICATIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-app.routes"></span><dl class="py function">
+<dt id="app.routes.home">
+<code class="sig-prename descclassname">app.routes.</code><code class="sig-name descname">home</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.home" title="Permalink to this definition">¶</a></dt>
+<dd><p>Home web page</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>routes object to ‘/’</p>
+</dd>
+<dt>Returns:</dt><dd><p>object with HTML file and ‘Home’ title</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.routes.login">
+<code class="sig-prename descclassname">app.routes.</code><code class="sig-name descname">login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs in user</p>
+<dl>
+<dt>Properties:</dt><dd><p>routes object to ‘/login’ data sent from browser to server</p>
+</dd>
+<dt>Attributes:</dt><dd><p>forms: object with LoginForms</p>
+<p>user: username typed in</p>
+</dd>
+<dt>Returns:</dt><dd><p>object with HTML file and ‘Sign In’ title</p>
+<p>if authenticated: redirected to home page</p>
+<p>if successfully validated: redirected to home page</p>
+<p>if unsuccessfully validated: Exception String thrown and redirected to login page</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.routes.logout">
+<code class="sig-prename descclassname">app.routes.</code><code class="sig-name descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs Out User</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>routes object to ‘/logout’</p>
+</dd>
+<dt>Returns:</dt><dd><p>redirects to Home page</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.routes.register">
+<code class="sig-prename descclassname">app.routes.</code><code class="sig-name descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers user to database</p>
+<dl>
+<dt>Properties:</dt><dd><p>routes object to ‘/register’ data sent from browser to server</p>
+</dd>
+<dt>Attributes:</dt><dd><p>forms: object with RegisterForms</p>
+<p>user: username typed in</p>
+</dd>
+<dt>Returns:</dt><dd><p>object with HTML file and ‘Sign Up’ title</p>
+<p>if authenticated: redirected to home page</p>
+<p>if successfully validated: creates user, adds to database, then redirects to login page</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-app.models"></span><dl class="py class">
+<dt id="app.models.User">
+<em class="property">class </em><code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database Tables</p>
+<dl>
+<dt>Args:</dt><dd><p>db.Model: SQLALCHEMY class</p>
+</dd>
+<dt>Attributes:</dt><dd><p>id: Database counter</p>
+<p>username: unique String of 64 characters</p>
+<p>email: unique String of 128 characters</p>
+<p>password_hash: String of 128 characters</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="app.models.User.check_password">
+<code class="sig-name descname">check_password</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.check_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks password_hash for given password</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="app.models.User.email">
+<code class="sig-name descname">email</code><a class="headerlink" href="#app.models.User.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="app.models.User.get_id">
+<code class="sig-name descname">get_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns id number for user_loader callback</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="app.models.User.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#app.models.User.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="app.models.User.is_active">
+<code class="sig-name descname">is_active</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.is_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True, if active user</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.models.User.is_anonymous">
+<code class="sig-name descname">is_anonymous</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.is_anonymous" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns False, if actual user</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.models.User.is_authenticated">
+<code class="sig-name descname">is_authenticated</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.is_authenticated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True, if user is authenticated</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="app.models.User.password_hash">
+<code class="sig-name descname">password_hash</code><a class="headerlink" href="#app.models.User.password_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="app.models.User.set_password">
+<code class="sig-name descname">set_password</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.User.set_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates and sets hash for password_hash</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="app.models.User.username">
+<code class="sig-name descname">username</code><a class="headerlink" href="#app.models.User.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.models.load_user">
+<code class="sig-prename descclassname">app.models.</code><code class="sig-name descname">load_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.models.load_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads User</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id: int that identifies user</p>
+</dd>
+<dt>Properties: </dt><dd><p>reloads the user object from the user ID stored in session</p>
+</dd>
+<dt>Returns:</dt><dd><p>User from id number</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-app.forms"></span><dl class="py class">
+<dt id="app.forms.LoginForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds Login Forms for Sign In webpage</p>
+<dl>
+<dt>Args:</dt><dd><p>Flaskform: imported from flask_wtf</p>
+</dd>
+<dt>Attributes:</dt><dd><p>username: Title for username textbox in webpage</p>
+<p>password: Title for password textbox in webpage</p>
+<p>remember_me: Title for remember_me textbox in webpage</p>
+<p>submit: Title for submit textbox in webpage</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="app.forms.LoginForm.password">
+<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.LoginForm.remember_me">
+<code class="sig-name descname">remember_me</code><em class="property"> = &lt;UnboundField(BooleanField, ('Remember Me',), {})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.remember_me" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.LoginForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Sign In',), {})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.LoginForm.username">
+<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.LoginForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="app.forms.RegisterForm">
+<em class="property">class </em><code class="sig-prename descclassname">app.forms.</code><code class="sig-name descname">RegisterForm</code><span class="sig-paren">(</span><em class="sig-param">formdata=&lt;object object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegisterForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holds Register Forms for Sign Up webpage</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>Flaskform: imported from flask_wtf</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>Attributes:</dt><dd><p>username: Title for username textbox in webpage</p>
+<p>email: Title for email textbox in webpage</p>
+<p>password: Title for password textbox in webpage</p>
+<p>confirmPassword: Title for password confirmation textbox in webpage</p>
+<p>submit: Title for submit textbox in webpage</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="app.forms.RegisterForm.confirmPassword">
+<code class="sig-name descname">confirmPassword</code><em class="property"> = &lt;UnboundField(PasswordField, ('Reenter Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.EqualTo object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegisterForm.confirmPassword" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.RegisterForm.email">
+<code class="sig-name descname">email</code><em class="property"> = &lt;UnboundField(EmailField, ('Email',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;, &lt;wtforms.validators.Email object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegisterForm.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.RegisterForm.password">
+<code class="sig-name descname">password</code><em class="property"> = &lt;UnboundField(PasswordField, ('Password',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegisterForm.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.RegisterForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Sign Up',), {})&gt;</em><a class="headerlink" href="#app.forms.RegisterForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="app.forms.RegisterForm.username">
+<code class="sig-name descname">username</code><em class="property"> = &lt;UnboundField(StringField, ('Username',), {'validators': [&lt;wtforms.validators.DataRequired object&gt;]})&gt;</em><a class="headerlink" href="#app.forms.RegisterForm.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="app.forms.RegisterForm.validate_email">
+<code class="sig-name descname">validate_email</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegisterForm.validate_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates if email is in database</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>user: object in question for verification</p>
+</dd>
+<dt>Returns:</dt><dd><p>If in use: Validation Error String</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.forms.RegisterForm.validate_username">
+<code class="sig-name descname">validate_username</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.forms.RegisterForm.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates if user is in database</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>username: object in question for verification</p>
+</dd>
+<dt>Returns:</dt><dd><p>If in use: Validation Error String</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BookMe</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">How to install BookMe</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">How to install BookMe</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Benjamin Gonzalez, Lenexa Gonsalves, Alireza Mahin Parvar, Dominic Gutierrez.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/functions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
