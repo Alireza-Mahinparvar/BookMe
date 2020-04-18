@@ -8,10 +8,38 @@ from flask_login import login_required, login_user, logout_user, current_user
 
 @app.route('/')
 def home():
+    """ Home web page
+                    
+            Properties:
+                 routes object to '/'
+                 
+            Returns:
+                 object with HTML file and 'Home' title
+    """
     return render_template('home.html', tite = 'Home')
     
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """ Logs in user
+                    
+            Properties:
+                 routes object to '/login' data sent from browser to server          
+                 
+            Attributes:
+                 forms: object with LoginForms      
+                          
+                 user: username typed in            
+                 
+            Returns:
+                 object with HTML file and 'Sign In' title       
+            
+                 if authenticated: redirected to home page
+                 
+                 if successfully validated: redirected to home page
+                 
+                 if unsuccessfully validated: Exception String thrown and redirected to login page           
+    """
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -26,6 +54,23 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """ Registers user to database
+                    
+            Properties:
+                 routes object to '/register' data sent from browser to server
+                 
+            Attributes:
+                 forms: object with RegisterForms    
+                 
+                 user: username typed in         
+                 
+            Returns:
+                 object with HTML file and 'Sign Up' title      
+            
+                 if authenticated: redirected to home page
+                 
+                 if successfully validated: creates user, adds to database, then redirects to login page        
+    """
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegisterForm()
@@ -40,5 +85,13 @@ def register():
 
 @app.route('/logout')
 def logout():
+    '''Logs Out User 
+                    
+            Properties:
+                 routes object to '/logout'
+                                 
+            Returns:
+                 redirects to Home page            
+    '''
     logout_user()
     return redirect(url_for('home'))
