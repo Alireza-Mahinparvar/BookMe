@@ -12,10 +12,10 @@ def home():
                     
             Properties:
                  routes object to '/'
-                 
             Returns:
                  object with HTML file and 'Home' title
     """
+    
     return render_template('home.html', tite = 'Home')
     
 
@@ -27,17 +27,13 @@ def login():
                  routes object to '/login' data sent from browser to server          
                  
             Attributes:
-                 forms: object with LoginForms      
-                          
+                 forms: object with LoginForms                 
                  user: username typed in            
                  
             Returns:
                  object with HTML file and 'Sign In' title       
-            
                  if authenticated: redirected to home page
-                 
                  if successfully validated: redirected to home page
-                 
                  if unsuccessfully validated: Exception String thrown and redirected to login page           
     """
     if current_user.is_authenticated:
@@ -61,14 +57,11 @@ def register():
                  
             Attributes:
                  forms: object with RegisterForms    
-                 
                  user: username typed in         
                  
             Returns:
                  object with HTML file and 'Sign Up' title      
-            
                  if authenticated: redirected to home page
-                 
                  if successfully validated: creates user, adds to database, then redirects to login page        
     """
     if current_user.is_authenticated:
@@ -85,11 +78,10 @@ def register():
 
 @app.route('/logout')
 def logout():
-    '''Logs Out User 
-                    
+    '''Logs Out User    
+    
             Properties:
-                 routes object to '/logout'
-                                 
+                 routes object to '/logout              
             Returns:
                  redirects to Home page            
     '''
