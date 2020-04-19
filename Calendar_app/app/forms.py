@@ -6,18 +6,16 @@ from .models import User
 
 class LoginForm(FlaskForm):
     """ Holds Login Forms for Sign In webpage
-        
-            Args:
+           
+           Args:
                  Flaskform: imported from flask_wtf            
                  
             Attributes:
-                 username: Title for username textbox in webpage
-                 
+                 username: Title for username textbox in webpage 
                  password: Title for password textbox in webpage
-                 
                  remember_me: Title for remember_me textbox in webpage
+                 submit: Title for submit textbox in webpage   
                  
-                 submit: Title for submit textbox in webpage           
     """
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -32,14 +30,11 @@ class RegisterForm(FlaskForm):
                         
             Attributes:
                  username: Title for username textbox in webpage
-                 
                  email: Title for email textbox in webpage            
+                 password: Title for password textbox in webpage       
+                 confirmPassword: Title for password confirmation textbox in webpage             
+                 submit: Title for submit textbox in webpage 
                  
-                 password: Title for password textbox in webpage
-                 
-                 confirmPassword: Title for password confirmation textbox in webpage 
-                            
-                 submit: Title for submit textbox in webpage             
     """
     username = StringField('Username', validators=[DataRequired()])
     email = EmailField("Email", validators=[DataRequired(), Email(message="Please enter a valid email address")])
@@ -52,9 +47,9 @@ class RegisterForm(FlaskForm):
         
             Args:
                  username: object in question for verification
-                 
             Returns:
-                 If in use: Validation Error String                 
+                 If in use: Validation Error String  
+                 
         """
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
@@ -65,9 +60,9 @@ class RegisterForm(FlaskForm):
         
             Args:
                  user: object in question for verification
-                 
             Returns:
                  If in use: Validation Error String  
+                 
         """
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
