@@ -11,11 +11,8 @@ class User(db.Model):
                  
             Attributes:
                  id: Database counter
-                 
                  username: unique String of 64 characters
-                 
                  email: unique String of 128 characters
-                 
                  password_hash: String of 128 characters
     '''
     id = db.Column(db.Integer, primary_key=True)
@@ -45,10 +42,10 @@ class User(db.Model):
  
     def __repr__(self):
         '''Prints User object created in database
-        
              Returns:
                  User {} "username object"             
         '''
+        
         return '<User {}>'.format(self.username)
 
     def set_password(self, password):
@@ -68,10 +65,8 @@ def load_user(id):
     
             Args:
                id: int that identifies user          
-    
             Properties: 
-               reloads the user object from the user ID stored in session  
-               
+               reloads the user object from the user ID stored in session       
             Returns:
                User from id number               
     '''
