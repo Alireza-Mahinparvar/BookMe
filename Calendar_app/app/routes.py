@@ -15,6 +15,8 @@ def home():
             Returns:
                  object with HTML file and 'Home' title
     """
+    if current_user.is_authenticated:
+        return redirect(url_for('meetings'))
     
     return render_template('home.html', tite = 'Home')
     
@@ -87,3 +89,35 @@ def logout():
     '''
     logout_user()
     return redirect(url_for('home'))
+
+@app.route('/settings')
+def settings():
+    if not current_user.is_active:
+        flash("You must be logged in to edit your account settings")
+        return redirect(url_for('home'))
+    return render_template('settings.html', title = 'Account Settings')
+
+@app.route('/meetings')
+def meetings():
+
+    return render_template('meetings.html', title = 'Creator Home')
+
+@app.route('/<username>')
+def profile(username):
+    if current_user.is_active:
+        flash("Only guests may view other creators' profiles")
+        return redirect(url_for('home'))
+    found = False
+    name = username
+    users = User.query.all()
+    for u in users:
+        if name == u.username:
+            found = True
+            user = u
+    if not found:
+        flash('User "' + name + '" Not Found')
+        return redirect(url_for('home'))
+    return render_template('profile.html', title = 'Creator Profile', user = user)
+
+
+

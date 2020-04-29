@@ -22,7 +22,12 @@
         {% if current_user.is_active %}
         &emsp; <a href="{{ url_for('logout') }}">Log out</a>
         {% endif %}
-	 </div>
+     </div>
+     
+     {% if current_user.is_active == False %}
+     <p>To check out a creator's availability, go to /their_username</p>
+     {% endif %}
+     
        <hr>
        {% block content %}{% endblock %}
 

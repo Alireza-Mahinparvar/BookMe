@@ -59,6 +59,27 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
 
+class Meeting(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(256))
+    time = db.Column(db.DateTime, index=True)
+    guest = db.Column(db.String(64))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+ 
+    def __repr__(self):
+        return '<Posts {}>'.format(self.body)
+
+class Availability(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.Time, default='09:00:00')
+    end = db.Column(db.Time, default='20:00:00')
+    duration = db.Column(db.Time, default='00:30:00')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Start Time {}>'.format(self.start)
+
+
 @log_in.user_loader
 def load_user(id):
     '''Loads User 
