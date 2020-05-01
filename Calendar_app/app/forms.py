@@ -90,6 +90,19 @@ class CreatorSettings(FlaskForm):
     submit = SubmitField('Save Changes')
 
 class MeetingForm(FlaskForm):
+    """Holds Meeting Forms for booking an appointments
+                        
+             Args:
+                 Flaskform: imported from flask_wtf     
+                        
+            Attributes:
+                 Title: Title for meeting textbox in webpage
+                 Date: Date for Meeting textbox in webpage            
+                 StartTime: Starting time for Meeting textbox in webpage       
+                 Duration: Duration time for meeting textbox in webpage             
+                 submit: Title for submit textbox in webpage 
+                 
+    """
     title = StringField('Meeting title',validators=[DataRequired])
     date=DateField('Choose date', format="%m/%d/%Y",validators=[DataRequired()])
     startTime=SelectField('Choose starting time(in 24hr expression)',coerce=int,choices=[(i,i) for i in range(9,19)])
