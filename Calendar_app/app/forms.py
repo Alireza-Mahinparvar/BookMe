@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Email, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, SelectField
+from wtforms.validators import DataRequired, EqualTo, Email, ValidationError, NumberRange
 from wtforms.fields.html5 import EmailField 
 from .models import User
 
@@ -67,3 +67,27 @@ class RegisterForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Email is already in use; choose another.')
+
+
+class CreatorSettings(FlaskForm):
+    Duration = SelectField('Meeting Duration: ', choices=[(15, '15 minutes'), (30, '30 minutes'), (60, '1 hour')])
+    Start = SelectField('Availability Start Time', 
+        choices= [(0, '12:00 AM'), (1, '1:00 AM'), (2, '2:00 AM'), (3, '3:00 AM'), (4, '4:00 AM'),
+            (5, '5:00 AM'), (6, '6:00 AM'), (7, '7:00 AM'), (8, '8:00 AM'), (9, '9:00 AM'),
+            (10, '10:00 AM'), (11, '11:00 AM'), (12, '12:00 PM'), (13, '1:00 PM'), (14, '2:00 PM'),
+            (15, '3:00 PM'), (16, '4:00 PM'), (17, '5:00 PM'), (18, '6:00 PM'), (19, '7:00 PM'),
+            (20, '8:00 PM'), (21, '9:00 PM'), (22, '10:00 PM'), (23, '11:00 PM')], coerce=int)
+    End = SelectField('Availability End Time', 
+        choices= [(0, '12:00 AM'), (1, '1:00 AM'), (2, '2:00 AM'), (3, '3:00 AM'), (4, '4:00 AM'),
+            (5, '5:00 AM'), (6, '6:00 AM'), (7, '7:00 AM'), (8, '8:00 AM'), (9, '9:00 AM'),
+            (10, '10:00 AM'), (11, '11:00 AM'), (12, '12:00 PM'), (13, '1:00 PM'), (14, '2:00 PM'),
+            (15, '3:00 PM'), (16, '4:00 PM'), (17, '5:00 PM'), (18, '6:00 PM'), (19, '7:00 PM'),
+            (20, '8:00 PM'), (21, '9:00 PM'), (22, '10:00 PM'), (23, '11:00 PM')], coerce=int)
+
+    Email_Confirmation = BooleanField('Receive Email Confirmations for Meetings')
+    submit = SubmitField('Save Changes')
+
+class MeetingForm(FlaskForm):
+    Duration = SelectField('Meeting Duration: ', choices=['15 minutes', '30 minutes', '1 hour'])
+
+

@@ -3,7 +3,24 @@
 {% block content %}
     <!-- current_user a property of flask_login-->
     <h1>Hello, {{ current_user.username }}!</h1>
-    <h2>Here are your settings:</h2>
+    <h2>Change your settings:</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.Duration.label }}<br>
+            {{ form.Duration() }}
+        </p>
+        <p>
+            {{ form.Start.label }}<br>
+            {{ form.Start() }}
+        </p>
+        <p>
+            {{ form.End.label }}<br>
+            {{ form.End() }}
+        </p>
+        <p>{{ form.Email_Confirmation() }} {{ form.Email_Confirmation.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
     
 
 

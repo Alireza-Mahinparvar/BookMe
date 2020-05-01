@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 from app import app, db, log_in
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, CreatorSettings
 import jinja2
 from app.models import User
 import flask_login
@@ -90,12 +90,15 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET', 'POST'])
 def settings():
+    form = CreatorSettings()
     if not current_user.is_active:
         flash("You must be logged in to edit your account settings")
         return redirect(url_for('home'))
-    return render_template('settings.html', title = 'Account Settings')
+    if form.validate_on_submit():
+        flash("Your settings have been updated")
+    return render_template('settings.html', title = 'Account Settings', form = form)
 
 @app.route('/meetings')
 def meetings():
