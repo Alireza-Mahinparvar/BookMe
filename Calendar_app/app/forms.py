@@ -110,6 +110,14 @@ class MeetingForm(FlaskForm):
     submit = SubmitField('Submit Meeting')
 
     def validate_title(self,title):
+        """ Validates if title is in database
+        
+            Args:
+                 user: object in question for verification
+            Returns:
+                 If in use: Validation Error String  
+                 
+        """
     
         meeting=Meeting.query.filter_by(title=self.title.data).first()
 
@@ -117,6 +125,14 @@ class MeetingForm(FlaskForm):
             raise ValidationError('Please use another meeting title.')
 
     def validate_date(self,date):
+        """ Validates if date is in database
+        
+            Args:
+                 user: object in question for verification
+            Returns:
+                 If in use: Validation Error String  
+                 
+        """
     
         if self.date.data<datetime.datetime.now().date():
             raise ValidationError('You can only book for day after today.')   
