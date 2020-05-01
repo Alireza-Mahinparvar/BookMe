@@ -101,13 +101,11 @@ class MeetingForm(FlaskForm):
         meeting=Meeting.query.filter_by(title=self.title.data).first()
 
         if meeting is not None: # username exist
-
             raise ValidationError('Please use another meeting title.')
 
     def validate_date(self,date):
     
         if self.date.data<datetime.datetime.now().date():
-
             raise ValidationError('You can only book for day after today.')   
 
 
