@@ -107,7 +107,7 @@ class MeetingForm(FlaskForm):
     date=DateField('Choose date', format="%m/%d/%Y",validators=[DataRequired()])
     startTime=SelectField('Choose starting time(in 24hr expression)',coerce=int,choices=[(i,i) for i in range(9,19)])
     Duration = SelectField('Meeting Duration: ', choices=['15 minutes', '30 minutes', '1 hour'])
-
+    submit = SubmitField('Submit Meeting')
 
     def validate_title(self,title):
     
