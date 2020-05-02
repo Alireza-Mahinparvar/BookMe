@@ -137,13 +137,15 @@ class MeetingForm(FlaskForm):
         if self.date.data<datetime.datetime.now().date():
             raise ValidationError('You can only book for day after today.')   
 
+class UserChoiceIterable(object):
 
-
-class DeleteForms(FlaskForm):
-    delete = SelectField("Are you sure?: ", choices=[(True, 'YES'), (False, 'NO')])
-    submit = SubmitField("submit")
-
-
-
-
+    def __iter__(self):
+        users = User.query.all()
+        choices = [(user.id, f'{user.username}') for user in users] 
+        for choice in choices:
+            yield choice
+                        
+class DeleteForm(FlaskForm):
+    ids = SelectField('Choose User', coerce=int, choices=UserChoiceIterable())
+    submit = SubmitField('Delete')
 
