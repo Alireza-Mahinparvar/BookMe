@@ -2,10 +2,10 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from app import app, db, log_in
 from .forms import LoginForm, RegisterForm, CreatorSettings
 import jinja2
-from app.models import User
+from app.models import User, Meeting
 import flask_login
 from flask_login import login_required, login_user, logout_user, current_user
-from app.forms import CreatorSettings, DeleteForms
+from app.forms import CreatorSettings, DeleteForm
 import calendar
 import datetime
 
@@ -133,22 +133,19 @@ def profile(username):
                            year=year, month=month, listofdays=listofdays, 
                            user = user)
     
-@app.route('/delete', methods=['GET', 'POST'])
+@app.route('/delete',methods=['GET','POST'])
+@login_required
 def delete():
-    form = DeleteForms()
-    user_id = current_user.get_id()
-    if not current_user.is_active:
-        flash("You must be logged in to edit your account settings")
-        return redirect(url_for('home'))
+    if not current_user.is_authenticated:
+        flash('Please Log in as creator to delete user')
+        return redirect(url_for('login')) 
+    form=DeleteForm()
     if form.validate_on_submit():
-        deleted = User.query.filter_by(id=user_id)
-        db.session.delete(deleted)
+        user= User.query.filter_by(id=form.ids.data).first()
+        db.session.delete(user)
         db.session.commit()
-        flash("Your account has been deleted")
+        flash(f'User {user.username} successfully deleted! ')
         return redirect(url_for('home'))
-    return render_template('delete.html', form = form)
-
-
-
+    return render_template('delete.html',title='Delete User',form=form)
 
 
