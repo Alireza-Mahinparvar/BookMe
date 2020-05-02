@@ -139,3 +139,11 @@ class MeetingForm(FlaskForm):
 
 
 
+class DeleteForms(FlaskForm):
+    delete = SelectField("Are you sure?: ", choices=[(True, 'YES'), (False, 'NO')])
+    submit = SubmitField("submit")
+
+
+
+
+
