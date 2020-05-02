@@ -5,6 +5,9 @@ import jinja2
 from app.models import User
 import flask_login
 from flask_login import login_required, login_user, logout_user, current_user
+from app.forms import CreatorSettings, DeleteForms
+import calendar
+import datetime
 
 @app.route('/')
 def home():
@@ -15,10 +18,12 @@ def home():
             Returns:
                  object with HTML file and 'Home' title
     """
-    if current_user.is_authenticated:
-        return redirect(url_for('meetings'))
-    
-    return render_template('home.html', tite = 'Home')
+    today = datetime.datetime.today()
+    year = today.year
+    month = calendar.month_name[today.month]
+    listofdays = calendar.monthcalendar(year, today.month)
+    return render_template('home.html',year=year, month=month, 
+                           listofdays=listofdays, title = 'Home')
     
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -107,6 +112,10 @@ def meetings():
 
 @app.route('/<username>')
 def profile(username):
+    today = datetime.datetime.today()
+    year = today.year
+    month = calendar.month_name[today.month]
+    listofdays = calendar.monthcalendar(year, today.month)
     if current_user.is_active:
         flash("Only guests may view other creators' profiles")
         return redirect(url_for('home'))
@@ -120,7 +129,26 @@ def profile(username):
     if not found:
         flash('User "' + name + '" Not Found')
         return redirect(url_for('home'))
-    return render_template('profile.html', title = 'Creator Profile', user = user)
+    return render_template('profile.html', title = 'Creator Profile', 
+                           year=year, month=month, listofdays=listofdays, 
+                           user = user)
+    
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    form = DeleteForms()
+    user_id = current_user.get_id()
+    if not current_user.is_active:
+        flash("You must be logged in to edit your account settings")
+        return redirect(url_for('home'))
+    if form.validate_on_submit():
+        deleted = User.query.filter_by(id=user_id)
+        db.session.delete(deleted)
+        db.session.commit()
+        flash("Your account has been deleted")
+        return redirect(url_for('home'))
+    return render_template('delete.html', form = form)
+
+
 
 
 
