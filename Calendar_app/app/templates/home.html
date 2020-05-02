@@ -9,4 +9,124 @@
     {% endif %}
 
 
+
+    <!-- --Start of calendar -->
+     {% if current_user.is_active %}
+   <head>
+        <title> AUG </title>
+        <style>
+              body{
+              background: white;
+              background-image: url('https://thumbs.dreamstime.com/b/elegant-web-background-earth-waves-23109063.jpg');
+              }
+              .container{
+              max-width: 800px;
+              margin: auto;
+              font-family: sans-serif;
+              }
+              .month{
+              text-align: center;
+              background: blue;
+              font-size: 2.5em;
+              letter-spacing: 1px;
+              color: white;
+              padding: 25px;
+              border: 1px solid skyblue;
+              }
+              table, th, td{
+              width: 100%;
+              table-layout: fixed;
+              text-align: center;
+              font-size: 17px;
+              border-collapse: collapse;
+              border: 1px solid blue;
+              }
+              tr, th, td{
+              padding: 15px;
+              }
+              th{
+              background: white;
+              color: black;
+              }
+              td{
+              background: skyblue;
+              }
+              td:hover{
+              background: orange;
+              }
+        </style>
+    </head>
+    
+<body>
+     <div class="container">
+           <div class="month">
+                    <strong>{{ month }}</strong>
+                    <br>
+                    <strong>{{ year }}</strong>
+          </div>
+          <table>
+               <tr>
+                    <th>MON</th>
+                    <th>TUE</th>
+                    <th>WED</th>
+                    <th>THR</th>
+                    <th>FRI</th>
+                    <th>SAT</th>
+                    <th>SUN</th>
+               </tr>
+               <tr>
+                    <td>{% if listofdays[0][0] != 0 %} {{ listofdays[0][0] }} {% endif %}</td>
+                    <td>{% if listofdays[0][1] != 0 %} {{ listofdays[0][1] }} {% endif %}</td>
+                    <td>{% if listofdays[0][2] != 0 %} {{ listofdays[0][2] }} {% endif %}</td>
+                    <td>{% if listofdays[0][3] != 0 %} {{ listofdays[0][3] }} {% endif %}</td>
+                    <td>{% if listofdays[0][4] != 0 %} {{ listofdays[0][4] }} {% endif %}</td>
+                    <td>{% if listofdays[0][5] != 0 %} {{ listofdays[0][5] }} {% endif %}</td>
+                    <td>{% if listofdays[0][6] != 0 %} {{ listofdays[0][6] }} {% endif %}</td>
+               </tr>
+               <tr>
+                    <td>{{ listofdays[1][0] }}</td>
+                    <td>{{ listofdays[1][1] }}</td>
+                    <td>{{ listofdays[1][2] }}</td>
+                    <td>{{ listofdays[1][3] }}</td>
+                    <td>{{ listofdays[1][4] }}</td>
+                    <td>{{ listofdays[1][5] }}</td>
+                    <td>{{ listofdays[1][6] }}</td>
+               </tr>
+               <tr>
+                    <td>{{ listofdays[2][0] }}</td>
+                    <td>{{ listofdays[2][1] }}</td>
+                    <td>{{ listofdays[2][2] }}</td>
+                    <td>{{ listofdays[2][3] }}</td>
+                    <td>{{ listofdays[2][4] }}</td>
+                    <td>{{ listofdays[2][5] }}</td>
+                    <td>{{ listofdays[2][6] }}</td>
+               </tr>
+               <tr>
+                    <td>{{ listofdays[3][0] }}</td>
+                    <td>{{ listofdays[3][1] }}</td>
+                    <td>{{ listofdays[3][2] }}</td>
+                    <td>{{ listofdays[3][3] }}</td>
+                    <td>{{ listofdays[3][4] }}</td>
+                    <td>{{ listofdays[3][5] }}</td>
+                    <td>{{ listofdays[3][6] }}</td>
+               </tr>
+               <tr>
+                    <td>{% if listofdays[4][0] != 0 %} {{ listofdays[4][0] }} {% endif %}</td>
+                    <td>{% if listofdays[4][1] != 0 %} {{ listofdays[4][1] }} {% endif %}</td>
+                    <td>{% if listofdays[4][2] != 0 %} {{ listofdays[4][2] }} {% endif %}</td>
+                    <td>{% if listofdays[4][3] != 0 %} {{ listofdays[4][3] }} {% endif %}</td>
+                    <td>{% if listofdays[4][4] != 0 %} {{ listofdays[4][4] }} {% endif %}</td>
+                    <td>{% if listofdays[4][5] != 0 %} {{ listofdays[4][5] }} {% endif %}</td>
+                    <td>{% if listofdays[4][6] != 0 %} {{ listofdays[4][6] }} {% endif %}</td>
+               </tr>
+          </table>
+     </div>
+</body>
+{% endif %}
+   <!-- -End of calendar -->
+
+   
+
+
 {% endblock %}
+
