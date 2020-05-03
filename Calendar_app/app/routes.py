@@ -101,8 +101,13 @@ def settings():
     if not current_user.is_active:
         flash("You must be logged in to edit your account settings")
         return redirect(url_for('home'))
+
     if form.validate_on_submit():
         flash("Your settings have been updated")
+        user = User.query.filter_by(username=current_user.username).first()
+        user.set_duration(form.Duration.data)
+        return redirect(url_for('home'))
+    
     return render_template('settings.html', title = 'Account Settings', form = form)
 
 @app.route('/meetings')

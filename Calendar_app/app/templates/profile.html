@@ -3,6 +3,9 @@
 {% block content %}
     <h1>Welcome to {{ user.username }}'s Profile!</h1>
     <h2>Here is their availability:</h2>
+    <li>Start Time: {{ user.availability_start }}</li>
+    <li>End Time: {{ user.availability_end }}</li>
+    <li>Allowed Meeting Duration: {{ user.meeting_duration }}</li>
     
 
 <!-- --Start of calendar -->

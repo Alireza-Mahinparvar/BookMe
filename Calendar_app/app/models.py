@@ -1,5 +1,6 @@
 from app import db
 from app import log_in
+from datetime import time
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -19,6 +20,9 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    availability_start = db.Column(db.Time, default=time(9, 0, 0))
+    availability_end = db.Column(db.Time, default=time(20, 0, 0))
+    meeting_duration = db.Column(db.Time, default=time(0, 30, 0))
     
     def is_active(self):
         '''Returns True, if active user
@@ -57,6 +61,10 @@ class User(db.Model):
         '''Checks password_hash for given password
         '''
         return check_password_hash(self.password_hash, password)
+    
+    def set_duration(self, duration):
+
+        self.meeting_duration = duration
 
 
 class Meeting(db.Model):
@@ -68,16 +76,6 @@ class Meeting(db.Model):
  
     def __repr__(self):
         return '<Posts {}>'.format(self.body)
-
-class Availability(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    start = db.Column(db.Time, default='09:00:00')
-    end = db.Column(db.Time, default='20:00:00')
-    duration = db.Column(db.Time, default='00:30:00')
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-    def __repr__(self):
-        return '<Start Time {}>'.format(self.start)
 
 
 @log_in.user_loader

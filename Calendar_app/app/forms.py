@@ -5,6 +5,7 @@ from wtforms.fields.html5 import EmailField
 from .models import User
 from app.models import Meeting
 import datetime
+from datetime import time
 
 class LoginForm(FlaskForm):
     """ Holds Login Forms for Sign In webpage
@@ -72,9 +73,9 @@ class RegisterForm(FlaskForm):
 
 
 class CreatorSettings(FlaskForm):
-    Duration = SelectField('Meeting Duration: ', choices=[(15, '15 minutes'), (30, '30 minutes'), (60, '1 hour')])
+    Duration = SelectField('Meeting Duration: ', choices=[(time(0, 15, 0), '15 minutes'), (time(0, 30, 0), '30 minutes'), (time(1, 0, 0), '1 hour')], validators=[DataRequired()])
     Start = SelectField('Availability Start Time', 
-        choices= [(0, '12:00 AM'), (1, '1:00 AM'), (2, '2:00 AM'), (3, '3:00 AM'), (4, '4:00 AM'),
+        choices= [('00:00:00', '12:00 AM'), ('01:00:00', '1:00 AM'), ('02:00:00', '2:00 AM'), (3, '3:00 AM'), (4, '4:00 AM'),
             (5, '5:00 AM'), (6, '6:00 AM'), (7, '7:00 AM'), (8, '8:00 AM'), (9, '9:00 AM'),
             (10, '10:00 AM'), (11, '11:00 AM'), (12, '12:00 PM'), (13, '1:00 PM'), (14, '2:00 PM'),
             (15, '3:00 PM'), (16, '4:00 PM'), (17, '5:00 PM'), (18, '6:00 PM'), (19, '7:00 PM'),
@@ -85,8 +86,7 @@ class CreatorSettings(FlaskForm):
             (10, '10:00 AM'), (11, '11:00 AM'), (12, '12:00 PM'), (13, '1:00 PM'), (14, '2:00 PM'),
             (15, '3:00 PM'), (16, '4:00 PM'), (17, '5:00 PM'), (18, '6:00 PM'), (19, '7:00 PM'),
             (20, '8:00 PM'), (21, '9:00 PM'), (22, '10:00 PM'), (23, '11:00 PM')])
-    
-    
+
     Email_Confirmation = BooleanField('Receive Email Confirmations for Meetings')
     submit = SubmitField('Save Changes')
 
