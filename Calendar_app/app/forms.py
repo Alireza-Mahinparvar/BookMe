@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, SelectField, DateField
 from wtforms.validators import DataRequired, EqualTo, Email, ValidationError, NumberRange
 from wtforms.fields.html5 import EmailField 
 from .models import User
+from Calendar_app.app.models import Meeting
+import datetime
 
 class LoginForm(FlaskForm):
     """ Holds Login Forms for Sign In webpage
@@ -89,6 +91,62 @@ class CreatorSettings(FlaskForm):
     submit = SubmitField('Save Changes')
 
 class MeetingForm(FlaskForm):
+    """Holds Meeting Forms for booking an appointments
+                        
+             Args:
+                 Flaskform: imported from flask_wtf     
+                        
+            Attributes:
+                 Title: Title for meeting textbox in webpage
+                 Date: Date for Meeting textbox in webpage            
+                 StartTime: Starting time for Meeting textbox in webpage       
+                 Duration: Duration time for meeting textbox in webpage             
+                 submit: Title for submit textbox in webpage 
+                 
+    """
+    title = StringField('Meeting title',validators=[DataRequired])
+    date=DateField('Choose date', format="%m/%d/%Y",validators=[DataRequired()])
+    startTime=SelectField('Choose starting time(in 24hr expression)',coerce=int,choices=[(i,i) for i in range(9,19)])
     Duration = SelectField('Meeting Duration: ', choices=['15 minutes', '30 minutes', '1 hour'])
+    submit = SubmitField('Submit Meeting')
 
+    def validate_title(self,title):
+        """ Validates if title is in database
+        
+            Args:
+                 user: object in question for verification
+            Returns:
+                 If in use: Validation Error String  
+                 
+        """
+    
+        meeting=Meeting.query.filter_by(title=self.title.data).first()
+
+        if meeting is not None: # username exist
+            raise ValidationError('Please use another meeting title.')
+
+    def validate_date(self,date):
+        """ Validates if date is in database
+        
+            Args:
+                 user: object in question for verification
+            Returns:
+                 If in use: Validation Error String  
+                 
+        """
+    
+        if self.date.data<datetime.datetime.now().date():
+            raise ValidationError('You can only book for day after today.')   
+
+class UserChoiceIterable(object):
+
+    def __iter__(self):
+        users = User.query.all()
+        choices = [(user.id, f'{user.username}') for user in users] 
+        for choice in choices:
+            yield choice
+                        
+class DeleteForm(FlaskForm):
+    ids = SelectField('Choose User', coerce=int, choices=UserChoiceIterable())
+    submit = SubmitField('Delete')
 

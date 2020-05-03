@@ -2,9 +2,12 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from app import app, db, log_in
 from .forms import LoginForm, RegisterForm, CreatorSettings
 import jinja2
-from app.models import User
+from app.models import User, Meeting
 import flask_login
 from flask_login import login_required, login_user, logout_user, current_user
+from app.forms import CreatorSettings, DeleteForm
+import calendar
+import datetime
 
 @app.route('/')
 def home():
@@ -15,10 +18,12 @@ def home():
             Returns:
                  object with HTML file and 'Home' title
     """
-    if current_user.is_authenticated:
-        return redirect(url_for('meetings'))
-    
-    return render_template('home.html', tite = 'Home')
+    today = datetime.datetime.today()
+    year = today.year
+    month = calendar.month_name[today.month]
+    listofdays = calendar.monthcalendar(year, today.month)
+    return render_template('home.html',year=year, month=month, 
+                           listofdays=listofdays, title = 'Home')
     
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -107,6 +112,10 @@ def meetings():
 
 @app.route('/<username>')
 def profile(username):
+    today = datetime.datetime.today()
+    year = today.year
+    month = calendar.month_name[today.month]
+    listofdays = calendar.monthcalendar(year, today.month)
     if current_user.is_active:
         flash("Only guests may view other creators' profiles")
         return redirect(url_for('home'))
@@ -120,7 +129,23 @@ def profile(username):
     if not found:
         flash('User "' + name + '" Not Found')
         return redirect(url_for('home'))
-    return render_template('profile.html', title = 'Creator Profile', user = user)
-
+    return render_template('profile.html', title = 'Creator Profile', 
+                           year=year, month=month, listofdays=listofdays, 
+                           user = user)
+    
+@app.route('/delete',methods=['GET','POST'])
+@login_required
+def delete():
+    if not current_user.is_authenticated:
+        flash('Please Log in as creator to delete user')
+        return redirect(url_for('login')) 
+    form=DeleteForm()
+    if form.validate_on_submit():
+        user= User.query.filter_by(id=form.ids.data).first()
+        db.session.delete(user)
+        db.session.commit()
+        flash(f'User {user.username} successfully deleted! ')
+        return redirect(url_for('home'))
+    return render_template('delete.html',title='Delete User',form=form)
 
 
