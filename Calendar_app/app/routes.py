@@ -149,3 +149,8 @@ def delete():
     return render_template('delete.html',title='Delete User',form=form)
 
 
+@app.route('/search_users')
+def search_users():
+    users = User.query.all()
+    return render_template('search_users.html', title = 'Account Settings', users = users)
+

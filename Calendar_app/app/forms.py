@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeF
 from wtforms.validators import DataRequired, EqualTo, Email, ValidationError, NumberRange
 from wtforms.fields.html5 import EmailField 
 from .models import User
-from Calendar_app.app.models import Meeting
+from app.models import Meeting
 import datetime
 
 class LoginForm(FlaskForm):

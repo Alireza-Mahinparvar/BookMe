@@ -18,17 +18,13 @@
         <a href="{{ url_for('home') }}">Home Page</a>
         {% if current_user.is_active == False %}
         &emsp; <a href="{{ url_for('login') }}">Sign in</a>
+        &emsp; <a href="{{ url_for('search_users') }}">Book Meeting</a>
         {% endif %}
         {% if current_user.is_active %}
         &emsp; <a href="{{ url_for('logout') }}">Log out</a>
         &emsp; <a href="{{ url_for('settings') }}">Settings</a>
-        &emsp; <a href="{{ url_for('book') }}">Book Meeting</a>
         {% endif %}
      </div>
-     
-     {% if current_user.is_active == False %}
-     <p>To check out a creator's availability, go to /their_username</p>
-     {% endif %}
      
        <hr>
        {% block content %}{% endblock %}
