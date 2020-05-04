@@ -4,65 +4,16 @@
     <!-- current_user a property of flask_login-->
     <h1>Hello, {{ current_user.username }}!</h1>
     <h2>Here are your current scheduled meetings:</h2>
-    <form action="" method="post">
-
-        {{ form.hidden_tag() }}
-
-        {% for error in form.title.errors %}
-
-        <span style="color: red;">[{{ error }}]</span>
-
-        {% endfor %}
-
-        {% from "_formhelpers.html" import render_field %}
-
-        
-
-            {{ form.title.label}}    
-
-            {{ form.title(size=32)}}
-
-
-                {{ form.date.label}}
-
-                {{ form.date(class="dtpick") }}
-
-                {% for error in form.date.errors %}
-
-                <span style="color: red;">[{{ error }}]</span>
-
-                {% endfor %}
-
-            <dl>
-
-                {{ render_field(form.startTime) }}
-
-                {{ render_field(form.duration)}}
-
-            </dl>
-
-                {{ form.current_user.label }}
-
-                {{ form.current_user()}}
-
-                {% for error in form.current_user.errors %}
-
-                <span style="color: red;">[{{ error }}]</span>
-
-                {% endfor %}
-
-                {{ form.user.label }}
-
-                {{ form.user()}}
-
-                {% for error in form.user.errors %}
-
-                <span style="color: red;">[{{ error }}]</span>
-
-                {% endfor %}
-
-        <p>{{ form.submit() }}</p>
-
-    </form>
+    {% for m in meets %}
+    <div>
+        <p>----------------------------------</p>
+        <p>Guest Name: {{ m.guest }}</p>
+        <p>Description: {{ m.description }}</p>
+        <p>Date and Time: {{ m.time }}</p>
+        <p><a href="{{ url_for('delete_meeting', id = m.id) }}">Cancel Meeting</a></p>
+    </div>
+    {% endfor %}
+    <p>----------------------------------</p>
+    
 
 {% endblock %}

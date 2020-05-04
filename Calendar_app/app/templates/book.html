@@ -8,6 +8,22 @@
             <li>End Time: {{ user.availability_end }}</li>
             <li>Meeting Length: {{ user.meeting_duration }}</li>
 
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.Guest.label }}<br>
+                    {{ form.Guest }}
+                </p>
+                <p>
+                    {{ form.description.label }}<br>
+                    {{ form.description(cols = 50, rows = 5) }}
+                </p>
+                <p>
+                    {{ form.startTime.label }}<br>
+                    {{ form.startTime }}
+                </p>
+                <p>{{ form.submit() }}</p>
+            </form>
 
 {% endblock %}
 

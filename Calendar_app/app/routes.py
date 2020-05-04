@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 from app import app, db, log_in
-from .forms import LoginForm, RegisterForm, CreatorSettings
+from .forms import LoginForm, RegisterForm, CreatorSettings, MeetingForm
 import jinja2
 from app.models import User, Meeting
 import flask_login
@@ -8,7 +8,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from app.forms import CreatorSettings, DeleteForm
 import calendar
 import datetime
-from datetime import time
+from datetime import time, datetime
 
 @app.route('/')
 def home():
@@ -19,7 +19,11 @@ def home():
             Returns:
                  object with HTML file and 'Home' title
     """
-    today = datetime.datetime.today()
+    if current_user.is_active:
+        return redirect(url_for('meetings'))       # Milestone 3 says to make the meetings page the default for logged in users
+
+
+    today = datetime.today()
     year = today.year
     month = calendar.month_name[today.month]
     listofdays = calendar.monthcalendar(year, today.month)
@@ -104,6 +108,10 @@ def settings():
         return redirect(url_for('home'))
 
     if form.validate_on_submit():
+        if int(form.Start.data.split(':')[0]) > int(form.End.data.split(':')[0]):
+            flash('Error: Start time must be before End time')
+            return redirect(url_for('settings'))
+
         user = User.query.filter_by(id=current_user.id).first()
         t = form.Duration.data.split(':')
         user.meeting_duration = time(int(t[0]), int(t[1]), int(t[2]))
@@ -122,12 +130,17 @@ def settings():
 
 @app.route('/meetings')
 def meetings():
+    M = Meeting.query.all()
+    Yours = []
+    for m in M:
+        if m.user_id == current_user.id:
+            Yours.append(m)
 
-    return render_template('meetings.html', title = 'Creator Home')
+    return render_template('meetings.html', title = 'Creator Home', meets = Yours)
 
 @app.route('/<username>')
 def profile(username):
-    today = datetime.datetime.today()
+    today = datetime.today()
     year = today.year
     month = calendar.month_name[today.month]
     listofdays = calendar.monthcalendar(year, today.month)
@@ -173,7 +186,61 @@ def search_users():
 @app.route('/book/<username>/<year>/<month>/<day>', methods=['GET', 'POST'])
 def book(username, year, month, day):
     user = User.query.filter_by(username=username).first()
-    
+    form = MeetingForm()
+    times = []
+    start = str(user.availability_start)
+    end = str(user.availability_end)
+    start = start.split(':')[0]
+    end = end.split(':')[0]
+    for i in range(int(end)):
+        if i >= int(start):
+            if i < 10:
+                item = '0' + str(i) + ':00:00'
+                times.append([item, item])
+            else:
+                item = str(i) + ':00:00'
+                times.append([item, item])
+    form.startTime.choices = times
 
-    return render_template('book.html',title='Book a Meeting', user=user, year=year, month=month, day=day)
+    if month == 'January':
+        num_Month = 1
+    if month == 'February':
+        num_Month = 2
+    if month == 'March':
+        num_Month = 3
+    if month == 'April':
+        num_Month = 4
+    if month == 'May':
+        num_Month = 5
+    if month == 'June':
+        num_Month = 6
+    if month == 'July':
+        num_Month = 7
+    if month == 'August':
+        num_Month = 8
+    if month == 'September':
+        num_Month = 9
+    if month == 'October':
+        num_Month = 10
+    if month == 'November':
+        num_Month = 11
+    if month == 'December':
+        num_Month = 12
+    
+    if form.validate_on_submit():
+        start = form.startTime.data.split(':')[0]
+        date_time = datetime(int(year), num_Month, int(day), int(start))
+        m = Meeting(description = form.description.data, time = date_time, guest = form.Guest.data, user_id = user.get_id())
+        db.session.add(m)
+        db.session.commit()
+        flash("Meeting Confirmed")
+
+    return render_template('book.html',title='Book a Meeting', user=user, year=year, month=month, day=day, form = form)
+
+@app.route('/delete_meeting_<id>',methods=['GET','POST'])
+def delete_meeting(id):
+    meet = Meeting.query.filter_by(id=id).first()
+    db.session.delete(meet)
+    db.session.commit()
+    return redirect(url_for('meetings'))
 

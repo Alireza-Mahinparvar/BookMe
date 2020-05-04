@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TimeField, SelectField, DateField
 from wtforms.validators import DataRequired, EqualTo, Email, ValidationError, NumberRange
 from wtforms.fields.html5 import EmailField 
+from wtforms.widgets import TextArea
 from .models import User
 from app.models import Meeting
 import datetime
@@ -90,6 +91,10 @@ class CreatorSettings(FlaskForm):
     Email_Confirmation = BooleanField('Receive Email Confirmations for Meetings')
     submit = SubmitField('Save Changes')
 
+    
+        
+
+
 
 class MeetingForm(FlaskForm):
     """Holds Meeting Forms for booking an appointments
@@ -105,10 +110,11 @@ class MeetingForm(FlaskForm):
                  submit: Title for submit textbox in webpage 
                  
     """
-    title = StringField('Meeting title',validators=[DataRequired])
-    date=DateField('Choose date', format="%m/%d/%Y",validators=[DataRequired()])
-    startTime=SelectField('Choose starting time(in 24hr expression)',coerce=int,choices=[(i,i) for i in range(9,19)])
-    Duration = SelectField('Meeting Duration: ', choices=['15 minutes', '30 minutes', '1 hour'])
+    Guest = StringField("First and Last Name: ", validators=[DataRequired()])
+    description = StringField('Meeting Description: ',validators=[DataRequired()], widget=TextArea())
+    # date = DateField('Choose date', format="%m/%d/%Y",validators=[DataRequired()])     # date is chosen from calendar in profile
+    startTime = SelectField('Choose starting time (in 24hr expression): ', coerce=str)
+    # Duration = SelectField('Meeting Duration: ', choices=['15 minutes', '30 minutes', '1 hour'])      # allowed duration time is specified by creators 
     submit = SubmitField('Submit Meeting')
 
     def validate_title(self,title):
