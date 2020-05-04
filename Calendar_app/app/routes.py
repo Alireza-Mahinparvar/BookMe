@@ -169,3 +169,11 @@ def search_users():
     users = User.query.all()
     return render_template('search_users.html', title = 'Account Settings', users = users)
 
+
+@app.route('/book/<username>/<year>/<month>/<day>', methods=['GET', 'POST'])
+def book(username, year, month, day):
+    user = User.query.filter_by(username=username).first()
+    
+
+    return render_template('book.html',title='Book a Meeting', user=user, year=year, month=month, day=day)
+

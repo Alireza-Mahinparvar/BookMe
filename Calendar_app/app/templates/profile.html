@@ -71,49 +71,49 @@
                     <th>SUN</th>
                </tr>
                <tr>
-                    <td>{% if listofdays[0][0] != 0 %} {{ listofdays[0][0] }} {% endif %}</td>
-                    <td>{% if listofdays[0][1] != 0 %} {{ listofdays[0][1] }} {% endif %}</td>
-                    <td>{% if listofdays[0][2] != 0 %} {{ listofdays[0][2] }} {% endif %}</td>
-                    <td>{% if listofdays[0][3] != 0 %} {{ listofdays[0][3] }} {% endif %}</td>
-                    <td>{% if listofdays[0][4] != 0 %} {{ listofdays[0][4] }} {% endif %}</td>
-                    <td>{% if listofdays[0][5] != 0 %} {{ listofdays[0][5] }} {% endif %}</td>
-                    <td>{% if listofdays[0][6] != 0 %} {{ listofdays[0][6] }} {% endif %}</td>
+                    <td>{% if listofdays[0][0] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][0]) }}">{{ listofdays[0][0] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[0][1] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][1]) }}">{{ listofdays[0][1] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[0][2] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][2]) }}">{{ listofdays[0][2] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[0][3] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][3]) }}">{{ listofdays[0][3] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[0][4] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][4]) }}">{{ listofdays[0][4] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[0][5] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][5]) }}">{{ listofdays[0][5] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[0][6] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[0][6]) }}">{{ listofdays[0][6] }}</a> {% endif %}</td>
                </tr>
                <tr>
-                    <td>{{ listofdays[1][0] }}</td>
-                    <td>{{ listofdays[1][1] }}</td>
-                    <td>{{ listofdays[1][2] }}</td>
-                    <td>{{ listofdays[1][3] }}</td>
-                    <td>{{ listofdays[1][4] }}</td>
-                    <td>{{ listofdays[1][5] }}</td>
-                    <td>{{ listofdays[1][6] }}</td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][0]) }}">{{ listofdays[1][0] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][1]) }}">{{ listofdays[1][1] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][2]) }}">{{ listofdays[1][2] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][3]) }}">{{ listofdays[1][3] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][4]) }}">{{ listofdays[1][4] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][5]) }}">{{ listofdays[1][5] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[1][6]) }}">{{ listofdays[1][6] }}</a></td>
                </tr>
                <tr>
-                    <td>{{ listofdays[2][0] }}</td>
-                    <td>{{ listofdays[2][1] }}</td>
-                    <td>{{ listofdays[2][2] }}</td>
-                    <td>{{ listofdays[2][3] }}</td>
-                    <td>{{ listofdays[2][4] }}</td>
-                    <td>{{ listofdays[2][5] }}</td>
-                    <td>{{ listofdays[2][6] }}</td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][0]) }}">{{ listofdays[2][0] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][1]) }}">{{ listofdays[2][1] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][2]) }}">{{ listofdays[2][2] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][3]) }}">{{ listofdays[2][3] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][4]) }}">{{ listofdays[2][4] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][5]) }}">{{ listofdays[2][5] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[2][6]) }}">{{ listofdays[2][6] }}</a></td>
                </tr>
                <tr>
-                    <td>{{ listofdays[3][0] }}</td>
-                    <td>{{ listofdays[3][1] }}</td>
-                    <td>{{ listofdays[3][2] }}</td>
-                    <td>{{ listofdays[3][3] }}</td>
-                    <td>{{ listofdays[3][4] }}</td>
-                    <td>{{ listofdays[3][5] }}</td>
-                    <td>{{ listofdays[3][6] }}</td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][0]) }}">{{ listofdays[3][0] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][1]) }}">{{ listofdays[3][1] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][2]) }}">{{ listofdays[3][2] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][3]) }}">{{ listofdays[3][3] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][4]) }}">{{ listofdays[3][4] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][5]) }}">{{ listofdays[3][5] }}</a></td>
+                    <td><a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[3][6]) }}">{{ listofdays[3][6] }}</a></td>
                </tr>
                <tr>
-                    <td>{% if listofdays[4][0] != 0 %} {{ listofdays[4][0] }} {% endif %}</td>
-                    <td>{% if listofdays[4][1] != 0 %} {{ listofdays[4][1] }} {% endif %}</td>
-                    <td>{% if listofdays[4][2] != 0 %} {{ listofdays[4][2] }} {% endif %}</td>
-                    <td>{% if listofdays[4][3] != 0 %} {{ listofdays[4][3] }} {% endif %}</td>
-                    <td>{% if listofdays[4][4] != 0 %} {{ listofdays[4][4] }} {% endif %}</td>
-                    <td>{% if listofdays[4][5] != 0 %} {{ listofdays[4][5] }} {% endif %}</td>
-                    <td>{% if listofdays[4][6] != 0 %} {{ listofdays[4][6] }} {% endif %}</td>
+                    <td>{% if listofdays[4][0] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][0]) }}">{{ listofdays[4][0] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[4][1] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][1]) }}">{{ listofdays[4][1] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[4][2] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][2]) }}">{{ listofdays[4][2] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[4][3] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][3]) }}">{{ listofdays[4][3] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[4][4] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][4]) }}">{{ listofdays[4][4] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[4][5] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][5]) }}">{{ listofdays[4][5] }}</a> {% endif %}</td>
+                    <td>{% if listofdays[4][6] != 0 %} <a href="{{ url_for('book', username=user.username, year=year, month=month, day=listofdays[4][6]) }}">{{ listofdays[4][6] }}</a> {% endif %}</td>
                </tr>
           </table>
      </div>

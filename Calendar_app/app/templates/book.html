@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <!-- current_user a property of flask_login-->
+    <h1>{{ month }} {{ day }}, {{ year }}</h1>
+        <h2>Availability for {{ user.username }}:</h2>
+            <li>Start Time: {{ user.availability_start }}</li>
+            <li>End Time: {{ user.availability_end }}</li>
+            <li>Meeting Length: {{ user.meeting_duration }}</li>
+
+
+{% endblock %}
+
