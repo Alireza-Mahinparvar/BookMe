@@ -7,6 +7,8 @@ To start up the application:
 2) Go into the Calendar_app folder, with (cd Calendar_app)
 3) Run the "run.py" file
 
+If the website is not allowing you to login or create an account, try recreating the app.db file.
+
 To recreate app.db:
 >>> from app import db 
 >>> from app.models import User, Post
@@ -17,3 +19,7 @@ To recreate app.db:
 
 >>> db.session.add(u)   # similar to staging in git
 >>> db.session.commit() # writes to database
+
+To book a meeting: 
+Click on Book Meeting >> Click on a username >> Choose a day from the calendar >> Fill out meeting form >> Submit
+
