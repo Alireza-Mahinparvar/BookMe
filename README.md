@@ -1,5 +1,6 @@
 CMPE 131
-
+READ ME FILE 
+Team: Lennie Gonsalves, Ben Gonzalez, Dominic Gutierrez, Alireza Parvar
 
 To start up the application:
 1) Clone the CMPE-131 repository into a directory on ubuntu, with
