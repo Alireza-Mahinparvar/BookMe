@@ -22,10 +22,19 @@ def home():
     year = today.year
     month = calendar.month_name[today.month]
     listofdays = calendar.monthcalendar(year, today.month)
+    form = ViewForm()
+    myUser = User.query.all()
+    if form.is_submitted():
+        result = form.user.data
+        for u in myUser:
+            if result == u.username:
+                return profile(result)
+        flash("User Not Found")
+        return redirect(url_for('home'))
     return render_template('home.html',year=year, month=month, 
-                           listofdays=listofdays, title = 'Home')
+                           listofdays=listofdays, form=form, myUser=myUser, 
+                           title = 'Home')
     
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """ Logs in user
