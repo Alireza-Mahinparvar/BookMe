@@ -5,9 +5,26 @@
     <!-- current_user a property of flask_login-->
     <h1>Hello, {{ current_user.username }}!</h1>
     {% else %}
-    <h1>Welcome!</h1>
+    <h1>Welcome! Make an Appointment with:</h1>
+    
+   <form action="" method="post" novalidate>
+   <p> List of Users </p>
+             
+          {% for user in myUser %}
+         <li> {{ user.username }} </li>
+        {% endfor %}
+        <br>
+        
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.user.label }}<br>
+            {{ form.user(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+        
+    </form>
+    
     {% endif %}
-
 
 
     <!-- --Start of calendar -->
