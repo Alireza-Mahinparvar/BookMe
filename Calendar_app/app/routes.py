@@ -8,6 +8,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from app.forms import CreatorSettings, DeleteForm
 import calendar
 import datetime
+from datetime import time
 
 @app.route('/')
 def home():
@@ -103,9 +104,18 @@ def settings():
         return redirect(url_for('home'))
 
     if form.validate_on_submit():
+        user = User.query.filter_by(id=current_user.id).first()
+        t = form.Duration.data.split(':')
+        user.meeting_duration = time(int(t[0]), int(t[1]), int(t[2]))
+        t = form.Start.data.split(':')
+        user.availability_start = time(int(t[0]), int(t[1]), int(t[2]))
+        t = form.End.data.split(':')
+        user.availability_end = time(int(t[0]), int(t[1]), int(t[2]))
+
+        db.session.add(user)
+        db.session.commit()
+
         flash("Your settings have been updated")
-        user = User.query.filter_by(username=current_user.username).first()
-        user.set_duration(form.Duration.data)
         return redirect(url_for('home'))
     
     return render_template('settings.html', title = 'Account Settings', form = form)

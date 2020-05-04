@@ -20,9 +20,9 @@ class User(db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    availability_start = db.Column(db.Time, default=time(9, 0, 0))
-    availability_end = db.Column(db.Time, default=time(20, 0, 0))
-    meeting_duration = db.Column(db.Time, default=time(0, 30, 0))
+    availability_start = db.Column(db.Time, default= time(9, 0, 0))
+    availability_end = db.Column(db.Time, default= time(15, 0, 0))
+    meeting_duration = db.Column(db.Time, default= time(0, 30, 0))
     
     def is_active(self):
         '''Returns True, if active user
@@ -62,9 +62,10 @@ class User(db.Model):
         '''
         return check_password_hash(self.password_hash, password)
     
-    def set_duration(self, duration):
+    def set_duration(self, h, m, s):
 
-        self.meeting_duration = duration
+        self.meeting_duration = time(int(h), int(m), int(s))
+        
 
 
 class Meeting(db.Model):
