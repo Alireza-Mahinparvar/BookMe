@@ -151,3 +151,4 @@ class DeleteForm(FlaskForm):
     ids = SelectField('Choose User', coerce=int, choices=UserChoiceIterable())
     submit = SubmitField('Delete')
 
+

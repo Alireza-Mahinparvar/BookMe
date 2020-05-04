@@ -24,9 +24,9 @@ def home():
     month = calendar.month_name[today.month]
     listofdays = calendar.monthcalendar(year, today.month)
     return render_template('home.html',year=year, month=month, 
-                           listofdays=listofdays, title = 'Home')
+                           listofdays=listofdays, 
+                           title = 'Home')
     
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """ Logs in user
