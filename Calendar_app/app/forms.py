@@ -150,3 +150,9 @@ class DeleteForm(FlaskForm):
     ids = SelectField('Choose User', coerce=int, choices=UserChoiceIterable())
     submit = SubmitField('Delete')
 
+class ViewForm(FlaskForm):
+    user = StringField('Name of User', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
+
