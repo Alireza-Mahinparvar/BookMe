@@ -192,15 +192,6 @@ def book(username, year, month, day):
     end = str(user.availability_end)
     start = start.split(':')[0]
     end = end.split(':')[0]
-    for i in range(int(end)):
-        if i >= int(start):
-            if i < 10:
-                item = '0' + str(i) + ':00:00'
-                times.append([item, item])
-            else:
-                item = str(i) + ':00:00'
-                times.append([item, item])
-    form.startTime.choices = times
 
     if month == 'January':
         num_Month = 1
@@ -226,6 +217,32 @@ def book(username, year, month, day):
         num_Month = 11
     if month == 'December':
         num_Month = 12
+
+    # Create list of taken meeting times for that user on that day
+    taken_times = []
+    M = Meeting.query.all()
+    for m in M:
+        if m.user_id == user.id:
+            if m.time.year == int(year):
+                if m.time.month == num_Month:
+                    if m.time.day == int(day):
+                        taken_times.append(m.time.hour)
+    # taken_times holds all hours taken on that date
+
+    for i in range(int(end)):
+        taken = False
+        for j in taken_times:
+            if i == j:
+                taken = True
+        if taken == False:
+            if i >= int(start):
+                if i < 10:
+                    item = '0' + str(i) + ':00:00'
+                    times.append([item, item])
+                else:
+                    item = str(i) + ':00:00'
+                    times.append([item, item])
+    form.startTime.choices = times
     
     if form.validate_on_submit():
         start = form.startTime.data.split(':')[0]
@@ -233,7 +250,7 @@ def book(username, year, month, day):
         m = Meeting(description = form.description.data, time = date_time, guest = form.Guest.data, user_id = user.get_id())
         db.session.add(m)
         db.session.commit()
-        flash("Meeting Confirmed")
+        return redirect(url_for('confirm_meeting', id = m.id))
 
     return render_template('book.html',title='Book a Meeting', user=user, year=year, month=month, day=day, form = form)
 
@@ -243,4 +260,11 @@ def delete_meeting(id):
     db.session.delete(meet)
     db.session.commit()
     return redirect(url_for('meetings'))
+
+@app.route('/meeting_confirmation_<id>',methods=['GET','POST'])
+def confirm_meeting(id):
+    meet = Meeting.query.filter_by(id=id).first()
+    user = User.query.filter_by(id=meet.user_id).first()
+    
+    return render_template('confirmation.html',title='Meeting Confirmed', meet=meet, user=user)
 

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <h1>Your meeting with {{ user.username }} has been confirmed!</h1>
+    <p>-----------------------------------------------------------</p>
+    <h2>Here are the details of your meeting:</h2>
+    <p>Your Name: {{ meet.guest }}</p>
+    <p>Date and Time: {{ meet.time }}</p>
+    <p>Description: {{ meet.description }}</p>
+    <p>Meeting Length: {{ user.meeting_duration }}</p>
+    <p>-----------------------------------------------------------</p>
+    <p>Thanks for using BookMe!</p>
+    
+
+
+{% endblock %}
