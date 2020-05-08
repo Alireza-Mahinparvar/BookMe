@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/
-        bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/
-        Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
        {% if title %}
        <title>BookMe - {{ title }} Page</title>
        {% else %}
@@ -19,34 +17,30 @@
     <body>
        <div>
            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="
-                     #navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                 <ul class="navbar-nav">
-                   <li class="nav-item active">
-                      <a class="nav-link" href="{{ url_for('home') }}">Home Page "sr-only">(current)</span></a>
-                      {% if current_user.is_active == False %}
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href=href="{{ url_for('login') }}">Sign in</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="{{ url_for('search_users') }}">Book Meeting</a>
-                   </li>
-                   <li class="nav-item">
-                     {% endif %}
-                        {% if current_user.is_active %}
-                        &emsp; <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
-                        &emsp; <a class="nav-link" href="{{ url_for('settings')}}">Settings</a>
-                    {% endif %}
-                   </li>
-                </ul>
+             <a class="navbar-brand" href="{{ url_for('home') }}">Home Page</a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                 {% if current_user.is_active == False %}
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Sign in</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link"  href="{{ url_for('search_users') }}">Book Meeting</a>
+                 </li>
+                 {% endif %}
+                 <li class="nav-item">
+                 {% if current_user.is_active %}
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
+                    <a class="nav-link" href="{{ url_for('settings')}}">Settings</a>
+                 {% endif %}
+                 </li>
+               </ul>
              </div>
-          </nav>
-     </div>
+           </nav>
+       </div>
      
        <hr>
        {% block content %}{% endblock %}
