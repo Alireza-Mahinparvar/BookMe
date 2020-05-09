@@ -4,7 +4,11 @@
     <!-- current_user a property of flask_login-->
     <h1>Click on a user to view their profile</h1>
     {% for user in users %}
-    <li><a href="/{{ user.username }}">{{ user.username }}</a></li>
+    <div class="list-group">
+                <li type="button" class="list-group-item">
+                <a href="/{{ user.username }}">{{ user.username }}</a>
+                </li>
+	    </div>
     {% endfor %}
 
 
