@@ -3,11 +3,13 @@
 {% block content %}
     <!-- current_user a property of flask_login-->
     <h1>{{ month }} {{ day }}, {{ year }}</h1>
-        <h2>Availability for {{ user.username }}:</h2>
-            <li>Start Time: {{ user.availability_start }}</li>
-            <li>End Time: {{ user.availability_end }}</li>
-            <li>Meeting Length: {{ user.meeting_duration }}</li>
-
+            <div class="list-group">
+                <button type="button" class="list-group-item">Availability for {{ user.username }}:</button>
+				<button type="button" class="list-group-item">Start Time: {{ user.availability_start }} </button>
+				<button type="button" class="list-group-item">End Time: {{ user.availability_end }}</button>
+				<button type="button" class="list-group-item">Meeting Length: {{ user.meeting_duration }}</button>	
+	        </div>
+        
             <form action="" method="post" novalidate>
                 {{ form.hidden_tag() }}
                 <p>
@@ -19,11 +21,12 @@
                     {{ form.description(cols = 50, rows = 5) }}
                 </p>
                 <p>
-                    {{ form.startTime.label }}<br>
-                    {{ form.startTime }}
+                    
+                     {{ form.startTime.label }}<br>
+                     {{ form.startTime }}
+                       
                 </p>
                 <p>{{ form.submit() }}</p>
             </form>
 
 {% endblock %}
-
