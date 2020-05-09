@@ -1,15 +1,12 @@
 {% extends "base.html" %}
  
 {% block content %}
-<div class="list-group">
-			
-				<button type="button" class="list-group-item">
-                    <h1>Welcome to {{ user.username }}'s Profile!</h1>
-                    <h2>Here is their availability:</h2>
-                    </button>
-				<button type="button" class="list-group-item">Start Time: {{ user.availability_start }}</button>
-				<button type="button" class="list-group-item">End Time: {{ user.availability_end }}</button>
-				<button type="button" class="list-group-item">Allowed Meeting Duration: {{ user.meeting_duration }}</button>
+				<h1>Welcome to {{ user.username }}'s Profile!</h1>
+               			<h2>Here is their availability:</h2>
+               		<div class="list-group w-25 p-3">
+				<li type="button" class="list-group-item">Start Time: {{ user.availability_start }}</li>
+				<li type="button" class="list-group-item">End Time: {{ user.availability_end }}</li>
+				<li type="button" class="list-group-item">Allowed Meeting Duration: {{ user.meeting_duration }}</li>
 			</div>
     
     
