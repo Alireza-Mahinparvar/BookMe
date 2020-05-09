@@ -33,7 +33,6 @@
                     <a class="nav-link"  href="{{ url_for('search_users') }}">Book Meeting</a>
                  </li>
                  {% endif %}
-<<<<<<< HEAD
                  {% if current_user.is_active %}
                  <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
@@ -42,15 +41,12 @@
                     <a class="nav-link" href="{{ url_for('settings') }}">Settings</a>
                   </li>
                  {% endif %}
-                 
-=======
                  <li class="nav-item">
                  {% if current_user.is_active %}
                     <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
                     <a class="nav-link" href="{{ url_for('settings')}}">Settings</a>
                  {% endif %}
                  </li>
->>>>>>> 040d4c42dbf79ee86571d534426f97899759465b
                </ul>
              </div>
            </nav>
