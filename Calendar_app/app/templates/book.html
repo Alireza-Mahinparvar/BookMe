@@ -2,14 +2,7 @@
  
 {% block content %}
     <!-- current_user a property of flask_login-->
-    <h1>{{ month }} {{ day }}, {{ year }}</h1>
-            <div class="list-group">
-                <button type="button" class="list-group-item">Availability for {{ user.username }}:</button>
-				<button type="button" class="list-group-item">Start Time: {{ user.availability_start }} </button>
-				<button type="button" class="list-group-item">End Time: {{ user.availability_end }}</button>
-				<button type="button" class="list-group-item">Meeting Length: {{ user.meeting_duration }}</button>	
-	        </div>
-        
+	<h1>{{ month }} {{ day }}, {{ year }}</h1>
             <form action="" method="post" novalidate>
                 {{ form.hidden_tag() }}
                 <p>
