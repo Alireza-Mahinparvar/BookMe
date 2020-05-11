@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <h1>Your meeting with {{ user.username }} has been confirmed!</h1>
+    <p>-----------------------------------------------------------</p>
+     <div class="list-group w-50 p-3">
+				            <li type="button" class="list-group-item ">Your Name: {{ meet.guest }}</li>
+				            <li type="button" class="list-group-item ">Date and Time: {{ meet.time }}</li>
+				            <li type="button" class="list-group-item ">Description: {{ meet.description }}</li>
+                <li type="button" class="list-group-item active">Meeting Length: {{ user.meeting_duration }}</li>
+			</div>
+    <p>-----------------------------------------------------------</p>
+    <p>Thanks for using BookMe!</p>
+    
+
+
+{% endblock %}

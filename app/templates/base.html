@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+       {% if title %}
+       <title>BookMe - {{ title }} Page</title>
+       {% else %}
+       <title>BookMe</title>
+       {% endif %}
+      
+      <link rel="stylesheet" href="/home/alirezamahinparvar/CMPE131.Project/Calendar_app/app/templates/style.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <style>
+        body {
+            background-image: url("https://thewallpaper.co//wp-content/uploads/2016/06/blue-sky-abstract-background-images-for-website-cool-colourful-apple-2560x1600.jpg");
+            background-size: 100;
+            background-repeat: no-repeat;
+            background-size: cover;
+             }
+      </style>
+    </head>
+    <body>
+       <div>
+           <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+             <a class="navbar-brand" href="{{ url_for('home') }}">Home Page</a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                 {% if current_user.is_active == False %}
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Sign in</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link"  href="{{ url_for('search_users') }}">Book Meeting</a>
+                 </li>
+                 {% endif %}
+                 {% if current_user.is_active %}
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
+                  </li>   
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('settings') }}">Settings</a>
+                  </li>
+                 {% endif %}
+               </ul>
+             </div>
+           </nav>
+       </div>
+     
+       <hr>
+       {% block content %}{% endblock %}
+
+       {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %} 
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

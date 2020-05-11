@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <!-- current_user a property of flask_login-->
+	<h1>{{ month }} {{ day }}, {{ year }}</h1>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.Guest.label }}<br>
+                    {{ form.Guest }}
+                </p>
+                <p>
+                    {{ form.description.label }}<br>
+                    {{ form.description(cols = 50, rows = 5) }}
+                </p>
+                <p>
+                    
+                     {{ form.startTime.label }}<br>
+                     {{ form.startTime }}
+                       
+                </p>
+                <p>{{ form.submit() }}</p>
+            </form>
+
+{% endblock %}

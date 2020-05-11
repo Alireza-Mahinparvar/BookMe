@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <!-- current_user a property of flask_login-->
+    <h1>Click on a user to view their profile</h1>
+    {% for user in users %}
+    <div class="list-group w-25 p-3">
+                <li type="button" class="list-group-item">
+                <a href="/{{ user.username }}">{{ user.username }}</a>
+                </li>
+	    </div>
+    {% endfor %}
+
+
+
+{% endblock %}
+
