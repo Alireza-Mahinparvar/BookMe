@@ -9,6 +9,3 @@ install:
   - pip install email_validator
   - pip install datetime
   - pip install calendra
-# command to run tests
-script:
-  - python3 run.py
