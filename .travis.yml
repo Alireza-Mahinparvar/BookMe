@@ -1,0 +1,14 @@
+language: python
+# command to install dependencies
+install:
+  - pip install flask
+  - pip install flask_sqlalchemy
+  - pip install flask_wtf
+  - pip install wtforms.validators
+  - pip install wheel
+  - pip install email_validator
+  - pip install datetime
+  - pip install calendra
+# command to run tests
+script:
+  - python3 run.py
