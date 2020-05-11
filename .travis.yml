@@ -9,3 +9,5 @@ install:
   - pip install email_validator
   - pip install datetime
   - pip install calendra
+script:
+  - python3 run.py || python run.py
