@@ -4,7 +4,7 @@ Team: Lennie Gonsalves, Ben Gonzalez, Dominic Gutierrez, Alireza Parvar
 
 To start up the application:
 1) Clone the CMPE-131 repository into a directory on ubuntu, with
-    (git clone https://github.com/cmpe131-spring2020/CMPE-131)
+    (git clone https://github.com/Alireza-Mahinparvar/BookMe)
 2) pip install flask, flask_sqlalchemy, flask_wtf, wtforms.validators, 
                       wheel, email_validator, datetime, calendar
 3) Go into the Calendar_app folder, with (cd Calendar_app)
